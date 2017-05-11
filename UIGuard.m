@@ -13,7 +13,7 @@
 + (void)load {
     [UIViewController aspect_hookSelector:@selector(dismissViewControllerAnimated:completion:)
                               withOptions:AspectPositionBefore
-                               usingBlock:^{
+                               usingBlock:^ {
                                    [UIGuard guardAssert];
                                }
                                     error:nil];
@@ -28,14 +28,28 @@
     
     [UINavigationController aspect_hookSelector:@selector(popViewControllerAnimated:)
                                     withOptions:AspectPositionBefore
-                                     usingBlock:^{
+                                     usingBlock:^ {
                                          [UIGuard guardAssert];
                                      }
                                           error:nil];
-    
+
+    [UINavigationController aspect_hookSelector:@selector(popToRootViewControllerAnimated:)
+                                    withOptions:AspectPositionBefore
+                                     usingBlock:^ {
+                                         [UIGuard guardAssert];
+                                     }
+                                          error:nil];
+
+    [UINavigationController aspect_hookSelector:@selector(popToViewController:animated:)
+                                    withOptions:AspectPositionBefore
+                                     usingBlock:^ {
+                                         [UIGuard guardAssert];
+    }
+                                          error:nil];
+
     [UINavigationController aspect_hookSelector:@selector(pushViewController:animated:)
                                     withOptions:AspectPositionBefore
-                                     usingBlock:^{
+                                     usingBlock:^ {
                                          [UIGuard guardAssert];
                                      }
                                           error:nil];
